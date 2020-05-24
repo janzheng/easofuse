@@ -16,7 +16,6 @@
 
     <div class="Home-posts _section-article _margin-center">
 
-
       {#each Posts as post (post.id)}
         <Post {post}/>
       {/each}

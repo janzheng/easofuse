@@ -116,14 +116,6 @@ body, div, p {
 
 
 
-.ScheduleItem {
-	._tag.open {
-		background-color: usetheme(brand-active);
-		color: white;
-	}
-}
-
-
 
 input.__action {
 	border: 2px solid usetheme(brand-active);
@@ -137,6 +129,27 @@ input.__action {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+	Posts
+
+ */
+
+
+.Post-date {
+	margin-bottom: $size;
+}
 
 
 

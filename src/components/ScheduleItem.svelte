@@ -91,7 +91,7 @@
 		}
 
 		const reg = fetch(
-			`cytosis.json`, {
+			`cytosis`, {
 			headers: {
 	      'Content-Type': 'application/json'
 	    },

@@ -1,6 +1,6 @@
 <script context="module">
   export async function preload(page, session) {
-    const cytosis = await this.fetch(`cytosis.json`).then(r => r.json())
+    const cytosis = await this.fetch(`cytosis`).then(r => r.json())
     const Content = cytosis.results['Content']
     const Posts = cytosis.results['Posts']
 

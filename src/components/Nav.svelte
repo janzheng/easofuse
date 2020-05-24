@@ -2,7 +2,8 @@
   import Cytosis from 'cytosis'
   import marked from 'marked'
 
-  export let segment, Content;
+  // export let segment, Content;
+  export let Content;
   let content
 
   // $: if(Content) {

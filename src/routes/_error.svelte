@@ -31,10 +31,15 @@
 	<title>{status}</title>
 </svelte:head>
 
-<h1>{status}</h1>
 
-<p>{error.message}</p>
+<div class="Home-content _section-page _padding-top-2 _margin-center ">
+  <div class="_section-article _margin-center _margin-bottom-2">
+		<h1>{status}</h1>
 
-{#if dev && error.stack}
-	<pre>{error.stack}</pre>
-{/if}
+		<p>{error.message}</p>
+
+		{#if dev && error.stack}
+			<pre>{error.stack}</pre>
+		{/if}
+	</div>
+</div>

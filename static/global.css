@@ -15223,7 +15223,8 @@ h2.--large {
 }
 
 h3 {
-  padding-top: 21px;
+  margin-top: 21px;
+  padding-top: 0;
   font-size: 21px;
 }
 h3 a {
@@ -15398,15 +15399,19 @@ body, div, p {
   z-index: 10;
 }
 
-.ScheduleItem ._tag.open {
-  background-color: #0D5FF6;
-  color: white;
-}
-
 input.__action {
   border: 2px solid #0D5FF6;
   background-color: #0D5FF6;
 }
+/* 
+
+	Posts
+
+ */
+.Post-date {
+  margin-bottom: 18px;
+}
+
 .ContentFrame-body {
   position: relative;
   z-index: 10;

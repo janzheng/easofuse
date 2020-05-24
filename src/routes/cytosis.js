@@ -21,24 +21,30 @@
 // 	}
 // }
 
-import send from '@polka/send';
-import Cytosis from 'cytosis';
-import * as sapper from '@sapper/server';
-
-import { config } from "dotenv";
-
+import send from '@polka/send'
+import Cytosis from 'cytosis'
+import * as sapper from '@sapper/server'
+import NodeCache from 'node-cache'
+import { config } from "dotenv"
 import { automailer } from '../_helpers/mailer.js'
 
 config(); // https://github.com/sveltejs/sapper/issues/122
-
-
+const cache = new NodeCache();
 let json;
 
 export function get(req, res) {
 
 	const view = process.env.STATUS=='Preview' ? "Preview" : "Published"
 
-	console.log('view::', view)
+	let cachedContent = cache.get( "Content" )
+	if(cachedContent) {
+		send(res, 200, json, {
+			'Content-Type': 'application/json'
+		});
+		return 
+	}
+
+	// console.log('view::', view)
 	try {
 	  let bases = [{
 		  tables: ["Content"],
@@ -54,7 +60,7 @@ export function get(req, res) {
 
 		const { slug } = req.params;
 
-		console.log('loading cytosis...', bases)
+		// console.log('loading cytosis...', bases)
 
 		const apiEditorKey = process.env.AIRTABLE_PRIVATE_API
 		const baseId = process.env.AIRTABLE_PRIVATE_BASE
@@ -63,7 +69,7 @@ export function get(req, res) {
 	    apiKey: apiEditorKey,
 	    baseId: baseId,
 	    bases: 	bases,
-	    routeDetails: '[pdseminar/get]',
+	    routeDetails: '[cytosis/get]',
 	  })
 
 
@@ -73,13 +79,16 @@ export function get(req, res) {
 	  	delete _result['baseId']
 
 			json = JSON.stringify(_result)
+			cache.set( "Content", json, 60*60 );
 			send(res, 200, json, {
 				'Content-Type': 'application/json'
-			});
+			})
 	  })
 	} catch(err) {
-		throw new Error('[pdseminar/get] Error', err)
+		throw new Error('[cytosis/get] Error', err)
 	}
 }
+
+
 
 
